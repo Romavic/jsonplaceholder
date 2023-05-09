@@ -1,4 +1,4 @@
-import 'package:jsonplaceholder/app/data/repository/users_repository.dart';
+import 'package:jsonplaceholder/app/domain/repository/users_repository.dart';
 import 'package:jsonplaceholder/app/domain/entities/users_entities.dart';
 
 class UsersUseCase {
