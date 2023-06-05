@@ -3,15 +3,9 @@ import 'package:jsonplaceholder/app/domain/entities/users_entities.dart';
 
 class HiveAdapters {
   static void init() {
-    List<TypeAdapter> list = [
-      UsersEntitiesAdapter(),
-      AddressEntitiesAdapter(),
-      GeoEntitiesAdapter(),
-      CompanyEntitiesAdapter(),
-    ];
-
-    for (var adapter in list) {
-      Hive.registerAdapter(adapter);
-    }
+    Hive.registerAdapter(UsersEntitiesAdapter());
+    Hive.registerAdapter(AddressEntitiesAdapter());
+    Hive.registerAdapter(GeoEntitiesAdapter());
+    Hive.registerAdapter(CompanyEntitiesAdapter());
   }
 }

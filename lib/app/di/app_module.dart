@@ -38,7 +38,7 @@ class AppModule extends Module {
       ),
       Bind.factory<UsersRepository>(
         (i) => UsersRepositoryImpl(
-          hiveServiceImpl: i.get(),
+          hiveService: i.get(),
           dataSource: i.get(),
           mapper: i.get(),
         ),
