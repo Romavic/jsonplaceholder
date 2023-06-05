@@ -3,8 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jsonplaceholder/app/data/datasource/users_data_source.dart';
 import 'package:jsonplaceholder/app/data/datasource/users_data_source_impl.dart';
 import 'package:jsonplaceholder/app/data/mappers/users_mappers.dart';
-import 'package:jsonplaceholder/app/data/service/hive/hive.dart';
-import 'package:jsonplaceholder/app/data/service/hive/hive_impl.dart';
 import 'package:jsonplaceholder/app/domain/repository/users_repository.dart';
 import 'package:jsonplaceholder/app/data/service/api/api.dart';
 import 'package:jsonplaceholder/app/data/service/api/api_impl.dart';
@@ -30,18 +28,11 @@ class AppModule extends Module {
       Bind.singleton<Api>(
         (i) => ApiImpl(dio: i.get()),
       ),
-      Bind.singleton<HiveService>(
-        (i) => HiveServiceImpl(),
-      ),
       Bind.factory<UsersDataSource>(
         (i) => UsersDataSourceImpl(api: i.get()),
       ),
       Bind.factory<UsersRepository>(
-        (i) => UsersRepositoryImpl(
-          hiveServiceImpl: i.get(),
-          dataSource: i.get(),
-          mapper: i.get(),
-        ),
+        (i) => UsersRepositoryImpl(dataSource: i.get(), mapper: i.get()),
       ),
       Bind.factory((i) => UsersUseCase(repository: i.get())),
       Bind.lazySingleton((i) => UsersStore(useCase: i.get()))
